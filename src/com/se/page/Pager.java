@@ -1,6 +1,6 @@
 package com.se.page;
 
-public class pager {
+public class Pager {
 
 	private int totalBlock;
 	private int curBlock;

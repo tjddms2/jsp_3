@@ -6,6 +6,7 @@ import com.se.board.BoardDAO;
 import com.se.board.BoardDTO;
 import com.se.board.BoardReply;
 import com.se.board.BoardReplyDTO;
+import com.se.page.RowNumber;
 
 public class QnaDAO implements BoardDAO, BoardReply {
 	
@@ -22,7 +23,7 @@ public class QnaDAO implements BoardDAO, BoardReply {
 	}
 		
 	@Override
-	public List<BoardDTO> selectList(int startRow, int lastRow, String kind, String search) throws Exception {
+	public List<BoardDTO> selectList(RowNumber rowNumber) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

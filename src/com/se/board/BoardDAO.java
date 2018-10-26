@@ -2,10 +2,12 @@ package com.se.board;
 
 import java.util.List;
 
+import com.se.page.RowNumber;
+
 public interface BoardDAO {
 
 	//selcetList
-	public List<BoardDTO> selectList(int startRow, int lastRow, String kind, String search) throws Exception;
+	public List<BoardDTO> selectList(RowNumber rowNumber) throws Exception;
 	
 	//selectOne
 	public BoardDTO selectOne(int num)throws Exception; //¼±¾ðºÎ
