@@ -2,15 +2,15 @@ package com.se.page;
 
 public class RowNumber {
 	// 데이터 담는요소
-	private int starRow;
+	private int startRow;
 	private int lastRow;
 	private Search search;
 	
-	public int getStarRow() {
-		return starRow;
+	public int getStartRow() {
+		return startRow;
 	}
-	public void setStarRow(int starRow) {
-		this.starRow = starRow;
+	public void setStartRow(int startRow) {
+		this.startRow = startRow;
 	}
 	public int getLastRow() {
 		return lastRow;
@@ -24,6 +24,7 @@ public class RowNumber {
 	public void setSearch(Search search) {
 		this.search = search;
 	}
+	
 	
 	
 }
