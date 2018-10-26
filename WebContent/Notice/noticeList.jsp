@@ -53,7 +53,28 @@
 	<div class="row">
 		<h1>Notice </h1>
 	</div>
-	<div class="row">
+		<div class="row">
+			<div>
+				<form action="./noticeWriteProcess.jsp" method="post">
+					<div class="form-group">
+						<label for="title">TITLE:</label> <input type="text"
+							class="form-control" id="title" placeholder="Enter title"
+							name="title">
+					</div>
+					+
+					<div class="form-group">
+						<label for="writer">WRITER:</label> <input type="text"
+							class="form-control" id="writer" placeholder="Enter writer"
+							name="writer">
+					</div>
+					<div class="form-group">
+						<label for="contents">CONTENTS:</label>
+						<textarea rows="10" cols="" class="form-control" name="contents"></textarea>
+					</div>
+					<button type="submit" class="btn btn-default">WRITER</button>
+				</form>
+			</div>
+
 			<table class="table table-hover">
 				<tr>
 					<td>NUM</td>
@@ -65,7 +86,7 @@
 				<% for(BoardDTO boardDTO: ar) {%>
 				<tr>
 					<td><%=boardDTO.getNum()%></td>
-					<td><%=boardDTO.getTitle()%></td>
+					<td><a href="./noticeSelectOne.jsp?num=<%=boardDTO.getNum()%>"><%=boardDTO.getTitle()%></a></td>
 					<td><%=boardDTO.getWriter()%></td>
 					<td><%=boardDTO.getReg_date()%></td>
 					<td><%=boardDTO.getHit()%></td>
@@ -105,6 +126,14 @@
 			</div>
 
 		</div>
-<jsp:include page="../temp/footer.jsp"></jsp:include>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-1">
+					<a href="./noticeWriteForm.jsp"></a>
+				</div>
+			</div>
+		</div>
+		
+		<jsp:include page="../temp/footer.jsp"></jsp:include>
 </body>
 </html>
