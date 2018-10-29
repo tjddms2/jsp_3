@@ -8,13 +8,8 @@ import com.se.board.BoardReply;
 import com.se.board.BoardReplyDTO;
 import com.se.page.RowNumber;
 
-public class QnaDAO implements BoardDAO, BoardReply {
-	
-	@Override
-	public int replyupdate(BoardReplyDTO boardReplyDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+public abstract class QnaDAO implements BoardDAO, BoardReply {
+	//↑↑↑↑↑↑
 	
 	@Override
 	public int reply(BoardReplyDTO boardReplyDTO) throws Exception {
@@ -22,6 +17,12 @@ public class QnaDAO implements BoardDAO, BoardReply {
 		return 0;
 	}
 		
+	@Override
+	public int replyupdate(BoardReplyDTO boardReplyDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
 	@Override
 	public List<BoardDTO> selectList(RowNumber rowNumber) throws Exception {
 		// TODO Auto-generated method stub
@@ -51,8 +52,7 @@ public class QnaDAO implements BoardDAO, BoardReply {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
-	@Override
+	//@Override 
 	public int getCount(String kind, String search) throws Exception {
 		// TODO Auto-generated method stub
 		return 0;

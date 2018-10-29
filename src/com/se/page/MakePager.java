@@ -21,36 +21,36 @@ public class MakePager {
 		this.perPage=perPage;
 	}
 	
-	public RowNumber makeRow() { 				//startRow,lastRow,search¸¦ ¾È¿¡³Ö±â
+	public RowNumber makeRow() { 				
 		rowNumber = new RowNumber();
-		rowNumber.setStartRow((this.curPage-1)*this.perPage+1);   //startRow
-		rowNumber.setLastRow(this.curPage*this.perPage);		//lastRow
-		rowNumber.setSearch(this.search); 						//search 
+		rowNumber.setStartRow((this.curPage-1)*this.perPage+1);   				//startRow
+		rowNumber.setLastRow(this.curPage*this.perPage);						//lastRow
+		rowNumber.setSearch(this.search); 										//search 
 		return rowNumber;
 	}
 	
 	public Pager makePage(int totalCount) {
-		//1.totalPage ±¸ÇÏ±â
+		//1.totalPage ì „ì²´í˜ì´ì§€êµ¬í•˜ê¸°
 		int totalPage=totalCount/this.perPage;
 		if(totalCount%this.perPage !=0) {
 			totalPage++;
 		}
-		//2.totalBlock ±¸ÇÏ±â
-		int perBlock=5;
-		int totalBlock = totalPage/perBlock;		//perBlock :Áö¿ªº¯¼ö
+		//2.totalBlock  ì „ì²´ë¸”ëŸ­ êµ¬í•˜ê¸°
+		int perBlock = 5;
+		int totalBlock = totalPage/perBlock;									//perBlock 
 		if(totalPage%perBlock !=0) {
 			totalBlock++;
 		}
-		//3.curBlock±¸ÇÏ±â
+		//3.curBlock
 		int curBlock =  this.curPage/perBlock;
 		if(this.curPage%perBlock !=0) {
 			curBlock++;
 		}
-		//4.startNum, lastNum ±¸ÇÏ±â
+		//4.startNum, lastNum êµ¬í•˜ê¸°
 		int startNum = (curBlock-1)*perBlock+1;
 		int lastNum = curBlock*perBlock;
 		
-		//5. curBlock ¸¶Áö¸· Block
+		//5. curBlock ë§ˆì§€ë§‰ Block
 		if(curBlock == totalBlock) {
 			lastNum = totalPage;
 		}
@@ -60,7 +60,8 @@ public class MakePager {
 		pager.setTotalBlock(totalBlock);
 		pager.setStartNum(startNum);
 		pager.setLastNum(lastNum);
-		pager.setSearch(search);
+		pager.setSearch(this.search);
+		pager.setTotalPage(totalPage);
 		return pager;
 	}
 	

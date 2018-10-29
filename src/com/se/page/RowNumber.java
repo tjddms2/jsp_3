@@ -1,7 +1,7 @@
 package com.se.page;
 
 public class RowNumber {
-	// 데이터 담는요소
+	//
 	private int startRow;
 	private int lastRow;
 	private Search search;

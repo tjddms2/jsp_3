@@ -7,8 +7,8 @@ public class Pager {
 	private int curBlock;
 	private int startNum;
 	private int lastNum;
-	
 	private Search search;
+	
 	
 	public int getTotalPage() {
 		return totalPage;

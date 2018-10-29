@@ -3,6 +3,7 @@ package com.se.board;
 import java.util.List;
 
 import com.se.page.RowNumber;
+import com.se.page.Search;
 
 public interface BoardDAO {
 
@@ -10,7 +11,7 @@ public interface BoardDAO {
 	public List<BoardDTO> selectList(RowNumber rowNumber) throws Exception;
 	
 	//selectOne
-	public BoardDTO selectOne(int num)throws Exception; //¼±¾ðºÎ
+	public BoardDTO selectOne(int num)throws Exception;
 	
 	//insert
 	public int insert(BoardDTO boardDTO) throws Exception;
@@ -22,7 +23,7 @@ public interface BoardDAO {
 	public int delete(int num) throws Exception;
 	
 	//getCount
-	public int getCount(String kind, String search) throws Exception;
+	public int getCount(Search search) throws Exception;
 	
 	
 }

@@ -10,6 +10,7 @@ import com.se.board.BoardDAO;
 import com.se.board.BoardDTO;
 
 import com.se.page.RowNumber;
+import com.se.page.Search;
 import com.se.util.DBConnector;
 
 public class NoticeDAO implements BoardDAO {
@@ -34,16 +35,16 @@ public class NoticeDAO implements BoardDAO {
 					
 					ResultSet rs= st.executeQuery();
 					List<BoardDTO> ar= new ArrayList<>();
-					NoticeDTO dto =null;
+					NoticeDTO noticeDTO =null;
 					
 					while(rs.next()) {
-						dto= new NoticeDTO();
-						dto.setNum(rs.getInt("num"));
-						dto.setTitle(rs.getString("title"));
-						dto.setWriter(rs.getString("writer"));
-						dto.setReg_date(rs.getDate("reg_date"));
-						dto.setHit(rs.getInt("hit"));
-						ar.add(dto);
+						noticeDTO= new NoticeDTO();
+						noticeDTO.setNum(rs.getInt("num"));
+						noticeDTO.setTitle(rs.getString("title"));
+						noticeDTO.setWriter(rs.getString("writer"));
+						noticeDTO.setReg_date(rs.getDate("reg_date"));
+						noticeDTO.setHit(rs.getInt("hit"));
+						ar.add(noticeDTO);
 						
 					}
 					DBConnector.disConnect(rs, st, con);
@@ -58,25 +59,25 @@ public class NoticeDAO implements BoardDAO {
 		String sql="select * from notice where num=?";
 		PreparedStatement st= con.prepareStatement(sql);
 		st.setInt(1,num);
-		NoticeDTO dto=null;
+		NoticeDTO noticeDTO=null;
 		ResultSet rs= st.executeQuery();
 		
 		if(rs.next()) {
-		dto= new NoticeDTO();
-		dto.setNum(rs.getInt("num"));
-		dto.setTitle(rs.getString("title"));
-		dto.setContents(rs.getString("contents"));
-		dto.setWriter(rs.getString("writer"));
-		dto.setReg_date(rs.getDate("regdate"));
-		dto.setHit(rs.getInt("hit"));
+			noticeDTO= new NoticeDTO();
+			noticeDTO.setNum(rs.getInt("num"));
+			noticeDTO.setTitle(rs.getString("title"));
+			noticeDTO.setContents(rs.getString("contents"));
+			noticeDTO.setWriter(rs.getString("writer"));
+			noticeDTO.setReg_date(rs.getDate("regdate"));
+			noticeDTO.setHit(rs.getInt("hit"));
 		
 	}
 		DBConnector.disConnect(rs, st, con);
-		return dto;
+		return noticeDTO;
 		
 	}
 	
-	//sequence °¡Á®¿À±â
+	//sequence ê°€ì ¸ì˜¤ê¸°
 	public int getNum() throws Exception{
 		Connection con = DBConnector.getConnect();
 		String sql = "select notice_seq.nextval from dual";
@@ -91,15 +92,17 @@ public class NoticeDAO implements BoardDAO {
 	@Override
 	public int insert(BoardDTO boardDTO) throws Exception {
 		Connection con =DBConnector.getConnect();
-		String sql="insert into notice values(notice_seq.nextval,?,?,?,sysdate,0)";
+		
+		String sql="insert into notice values(?,?,?,?,sysdate,0)"; //ì²«ë²ˆìž¬ :notice_seq.nextval?
 		PreparedStatement st= con.prepareStatement(sql);
 				
 		st.setString(1, boardDTO.getTitle());
 		st.setString(2, boardDTO.getContents());
 		st.setString(3, boardDTO.getWriter());
-		int result=st.executeUpdate();
 		
+		int result=st.executeUpdate();
 		DBConnector.disConnect(st, con);
+		
 		return result;
 		
 	}
@@ -117,12 +120,13 @@ public class NoticeDAO implements BoardDAO {
 	}
 
 	@Override
-	public int getCount(String kind, String search) throws Exception {
+	public int getCount(Search search) throws Exception {
 		Connection con= DBConnector.getConnect();
-		String sql="select count(num) from notice"+" where "+kind+" like ?";
+		String sql="select count(num) from notice"+" where "+search.getKind()+" like ?";
 		
 		PreparedStatement st= con.prepareStatement(sql);
-		st.setString(1, "%"+search+"%");
+		st.setString(1, "%"+search.getSearch()+"%");
+		
 		ResultSet rs=st.executeQuery();
 		rs.next();
 		
@@ -132,9 +136,6 @@ public class NoticeDAO implements BoardDAO {
 		return result;
 	}
 
-	
-	
-	
 	
 	
 	
