@@ -10,21 +10,42 @@ import com.se.util.DBConnector;
 
 public class FileDAO {
 
-	public selectList(FilDTO fDTO) throws Exception{
+	public List<FilDTO> selectList(FilDTO filDTO) throws Exception{
 		List<FilDTO> ar = new ArrayList<>();
 		Connection con= DBConnector.getConnect();
 		String sql= "select * from upload where num=? and kind=?";
 		PreparedStatement st = con.prepareStatement(sql);
 		
-		st.setInt(1, fDTO.getNum());
-		st.setString(2, fDTO.getKind());
-		
+		st.setInt(1, filDTO.getNum());
+		st.setString(2, filDTO.getKind());
 		ResultSet rs= st.executeQuery();
-		while(rs.next()) {
-			fDTO = new FilDTO();
-			fDTO.setfNum(rs.getInt("fNum"));
-			
-		}
 		
+		while(rs.next()) {
+			filDTO = new FilDTO();
+			filDTO.setfNum(rs.getInt("fNum"));
+			filDTO.setfName(rs.getString("fName"));
+			filDTO.setoName(rs.getString("oName"));
+			filDTO.setNum(rs.getInt("num"));
+			filDTO.setKind(rs.getString("kind"));
+			ar.add(filDTO);
+		}
+		DBConnector.disConnect(rs, st, con);
+		return ar;
+	}
+	
+	public int insert(FilDTO filDTO)throws Exception{
+		Connection con =DBConnector.getConnect();
+		
+		String sql= "insert into upload values(file_seq.nextval,?,?,?,?)";
+		PreparedStatement st =con.prepareStatement(sql);
+		
+		st.setString(1, filDTO.getfName());
+		st.setString(2, filDTO.getoName());
+		st.setInt(3, filDTO.getNum());
+		st.setString(4, filDTO.getKind());
+		
+		int result = st.executeUpdate();
+		DBConnector.disConnect(st, con);
+		return result;
 	}
 }
