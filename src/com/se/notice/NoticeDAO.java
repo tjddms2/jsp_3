@@ -75,6 +75,18 @@ public class NoticeDAO implements BoardDAO {
 		return dto;
 		
 	}
+	
+	//sequence 가져오기
+	public int getNum() throws Exception{
+		Connection con = DBConnector.getConnect();
+		String sql = "select notice_seq.nextval from dual";
+		PreparedStatement st= con.prepareStatement(sql);
+		ResultSet rs= st.executeQuery();
+		rs.next();
+		int num = rs.getInt(1);
+		DBConnector.disConnect(rs, st, con);
+		return num;
+   }
 
 	@Override
 	public int insert(BoardDTO boardDTO) throws Exception {
