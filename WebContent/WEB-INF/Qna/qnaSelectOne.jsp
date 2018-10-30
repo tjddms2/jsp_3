@@ -5,10 +5,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%
-    BoardDTO boardDTO = (BoardDTO)request.getAttribute("dto");
-    List<FilDTO> ar = (List<FilDTO>)request.getAttribute("files");
-    
-    	
+   	 BoardDTO boardDTO = (BoardDTO)request.getAttribute("dto");
     %>
 <!DOCTYPE html>
 <html>
@@ -19,21 +16,18 @@
 </head>
 <body>
 <jsp:include page="../../temp/header.jsp"></jsp:include>
-
 	<div class="container-fluid">
 	<div class="row">
 		<h1>TITLE : <%= boardDTO.getTitle() %></h1>
-		<h1>WRITER : <%=boardDTO.getWriter() %></h1>
-		<h1>Contents: <%=boardDTO.getContents() %></h1>
-		<% for(FilDTO filDTO : ar) {%>
-			<h3><a href="../upload/<%= filDTO.getfName()%>"><%=filDTO.getoName() %></a></h3> <!-- 꺼내올때는 프로젝트 내의 경로를 따라가면 됨 -->
-		<%} %>
+		<h1>WRITER : <%= boardDTO.getWriter() %></h1>
+		<h1>Contents: <%= boardDTO.getContents() %></h1>
+		
 		</div>
-		</div>
+	</div>
 	<div>
-		<a href="./noticelist.do">List</a>
-		<a href="./noticeUpdateForm.do">Update</a>
-		<a href="./noticeDelete.do">Delete</a>
+		<a href="./qnalist.do">List</a>
+		<a href="./qnaUpdateForm.do">Update</a>
+		<a href="./qnaDelete.do">Delete</a>
 	</div>
 <jsp:include page="../../temp/footer.jsp"></jsp:include>
 </body>

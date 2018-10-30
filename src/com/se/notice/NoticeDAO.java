@@ -80,7 +80,7 @@ public class NoticeDAO implements BoardDAO {
 	//sequence 가져오기
 	public int getNum() throws Exception{
 		Connection con = DBConnector.getConnect();
-		String sql = "select notice_seq.nextval from dual";
+		String sql = "select notice_seq.nextval from dual";				//insert String sql 첫번째 물음표
 		PreparedStatement st= con.prepareStatement(sql);
 		ResultSet rs= st.executeQuery();
 		rs.next();

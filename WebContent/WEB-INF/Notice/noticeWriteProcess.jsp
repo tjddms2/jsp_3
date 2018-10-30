@@ -3,15 +3,12 @@
 <%@page import="com.se.file.FileDAO"%>
 <%@page import="com.se.file.FilDTO"%>
 <%@page import="com.se.notice.NoticeDAO"%>
-<%@page import="com.se.notice.NoticeDAO"%>
 <%@page import="com.se.notice.NoticeDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
   
-     <%
-  
-  
-     String path = request.getServletContext().getRealPath("upload");
+<%
+   String path = request.getServletContext().getRealPath("upload");
      System.out.println(path);
      int max = 1024*1024*10;
      

@@ -10,20 +10,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.se.action.ActionFoward;
-import com.se.notice.NoticeService;
+import com.se.qna.QnaService;
 
 /**
- * Servlet implementation class NoticeController
+ * Servlet implementation class QnaController
  */
-@WebServlet("/NoticeController")
-public class NoticeController extends HttpServlet {
+@WebServlet("/QnaController")
+public class QnaController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private QnaService qnaService;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeController() {
+    public QnaController() {
         super();
+        qnaService = new QnaService();
         // TODO Auto-generated constructor stub
     }
 
@@ -31,30 +33,26 @@ public class NoticeController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");								//들어올때
-		response.setCharacterEncoding("UTF-8");								//나갈때
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		
-		// /notice/notice***.do
-		// /notice***.do
-		String command = request.getPathInfo();								//뒤에있는 주소만 나옴(폴더 뺴고)
-		System.out.println(command);										//notice사이트안에 list가 안보여서 출력함.
+		String command = request.getPathInfo();
 		
 		ActionFoward actionFoward = null;
-		NoticeService noticeService= new NoticeService();
 		
-		if(command.equals("/noticeList.do")) {
-			actionFoward = noticeService.selectList(request, response);
-		}else if(command.equals("/noticeSelectOne.do")){					//하나 골라옴
-			actionFoward = noticeService.selectOne(request, response);
+		if(command.equals("/qnaList.do")) {
+			actionFoward =  qnaService.selectList(request, response);
+		}else if(command.equals("/qnaSelectOne.do")) {
+			actionFoward= qnaService.selectOne(request, response);
 		}
 		
-	if(actionFoward.isCheck()) { 											//view는 어디로 보낼건가?
+		if(actionFoward.isCheck()) {
 			RequestDispatcher view = request.getRequestDispatcher(actionFoward.getPath());
 			view.forward(request, response);
-			
 		}else {
 			response.sendRedirect(actionFoward.getPath());
 		}
+		
 	}
 
 	/**

@@ -6,8 +6,8 @@
     pageEncoding="UTF-8"%>
     <%
     BoardDTO boardDTO = (BoardDTO)request.getAttribute("dto");
-    List<FilDTO> ar = (List<FilDTO>)request.getAttribute("files");
-    
+   /*  List<FilDTO> ar = (List<FilDTO>)request.getAttribute("files"); */
+    String board =(String)request.getAttribute("board");
     	
     %>
 <!DOCTYPE html>
@@ -15,26 +15,28 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<jsp:include page="../../temp/bootstrap.jsp"></jsp:include>
+<jsp:include page="../../../temp/bootstrap.jsp"></jsp:include>
 </head>
 <body>
-<jsp:include page="../../temp/header.jsp"></jsp:include>
+<jsp:include page="../../../temp/header.jsp"></jsp:include>
 
 	<div class="container-fluid">
+	<div class="row">
+		<h1><%=board %> View</h1>
+	</div>
+	
 	<div class="row">
 		<h1>TITLE : <%= boardDTO.getTitle() %></h1>
 		<h1>WRITER : <%=boardDTO.getWriter() %></h1>
 		<h1>Contents: <%=boardDTO.getContents() %></h1>
-		<% for(FilDTO filDTO : ar) {%>
-			<h3><a href="../upload/<%= filDTO.getfName()%>"><%=filDTO.getoName() %></a></h3> <!-- 꺼내올때는 프로젝트 내의 경로를 따라가면 됨 -->
-		<%} %>
+		
 		</div>
-		</div>
-	<div>
-		<a href="./noticelist.do">List</a>
-		<a href="./noticeUpdateForm.do">Update</a>
-		<a href="./noticeDelete.do">Delete</a>
 	</div>
-<jsp:include page="../../temp/footer.jsp"></jsp:include>
+	<div>
+		<a href="./<%=board %>list.do">List</a>
+		<a href="./<%=board %>UpdateForm.do">Update</a>
+		<a href="./<%=board %>Delete.do">Delete</a>
+	</div>
+<jsp:include page="../../../temp/footer.jsp"></jsp:include>
 </body>
 </html>

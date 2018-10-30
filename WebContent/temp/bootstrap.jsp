@@ -6,3 +6,4 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link href="<%= request.getContextPath() %>/css/main.css" rel="stylesheet">
+  										<!-- ↑가지고만 오기때문에 보안상 중요하지 않다 -->
