@@ -15,12 +15,11 @@ import com.se.util.DBConnector;
 
 public class NoticeDAO implements BoardDAO {
 
-	
+	//select list
 	@Override
 	public List<BoardDTO> selectList(RowNumber rowNumber) throws Exception {
-		//select list
-				
-					Connection con= DBConnector.getConnect();
+		
+				Connection con= DBConnector.getConnect();
 					String sql="select * from "
 							+ "(select rownum R, N.* from "
 							+ "(select num, title, writer, reg_date, hit from notice "

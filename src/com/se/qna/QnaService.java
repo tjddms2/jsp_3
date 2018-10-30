@@ -25,16 +25,19 @@ public class QnaService implements BoardService{
 			// TODO Auto-generated method stub
 			return null;
 		}
+		
 		@Override
 		public ActionFoward update(HttpServletRequest request, HttpServletResponse response) {
 			// TODO Auto-generated method stub
 			return null;
 		}
+		
 		@Override
 		public ActionFoward delete(HttpServletRequest request, HttpServletResponse response) {
 			// TODO Auto-generated method stub
 			return null;
 		}
+		
 		//selectOne
 		public ActionFoward selectOne(HttpServletRequest request, HttpServletResponse response) {
 			ActionFoward actionFoward = new ActionFoward();
@@ -69,7 +72,7 @@ public class QnaService implements BoardService{
 			int curPage =1;
 			try {
 					curPage = Integer.parseInt(request.getParameter("curPage"));
-			} catch (Exception e1) {
+			} catch (Exception e) {
 				
 			}
 				String kind = request.getParameter("kind");

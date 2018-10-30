@@ -35,7 +35,7 @@ public class QnaDAO implements BoardDAO, BoardReply {
 		Connection con= DBConnector.getConnect();
 		String sql="select * from "
 				+ "(select rownum R, N.* from "
-				+ "(select num, title, writer, reg_date, hit from qna "
+				+ "(select * from qna"
 				+ "where "+rowNumber.getSearch().getKind()+" like ? "
 				+ "order by num desc) N) "
 				+ "where R between ? and ?";
@@ -47,8 +47,8 @@ public class QnaDAO implements BoardDAO, BoardReply {
 		
 		ResultSet rs= st.executeQuery();
 		List<BoardDTO> ar= new ArrayList<>();
-		
 		QnaDTO qnaDTO =null;
+		
 		while(rs.next()) {
 			qnaDTO= new QnaDTO();
 			qnaDTO.setNum(rs.getInt("num"));
@@ -72,21 +72,21 @@ public class QnaDAO implements BoardDAO, BoardReply {
 		String sql="select * from qna where num=?";
 		PreparedStatement st= con.prepareStatement(sql);
 		st.setInt(1,num);
-		BoardDTO boardDTO=null;
+		QnaDTO noticeDTO=null;
 		ResultSet rs= st.executeQuery();
 		
 		if(rs.next()) {
-			boardDTO= new NoticeDTO();
-			boardDTO.setNum(rs.getInt("num"));
-			boardDTO.setTitle(rs.getString("title"));
-			boardDTO.setContents(rs.getString("contents"));
-			boardDTO.setWriter(rs.getString("writer"));
-			boardDTO.setReg_date(rs.getDate("regdate"));
-			boardDTO.setHit(rs.getInt("hit"));
+			noticeDTO= new QnaDTO();
+			noticeDTO.setNum(rs.getInt("num"));
+			noticeDTO.setTitle(rs.getString("title"));
+			noticeDTO.setContents(rs.getString("contents"));
+			noticeDTO.setWriter(rs.getString("writer"));
+			noticeDTO.setReg_date(rs.getDate("regdate"));
+			noticeDTO.setHit(rs.getInt("hit"));
 		
 	}
 		DBConnector.disConnect(rs, st, con);
-		return boardDTO;
+		return noticeDTO;
 		
 	}
 
@@ -110,15 +110,16 @@ public class QnaDAO implements BoardDAO, BoardReply {
 	//@Override 
 	public int getCount(Search search) throws Exception {
 		Connection con= DBConnector.getConnect();
-		String sql="select count(num) from board"+" where "+search.getKind()+" like ?";
+		String sql="select count(num) from qna "
+				+"where "+search.getKind()+" like ?";
 		
 		PreparedStatement st= con.prepareStatement(sql);
 		st.setString(1, "%"+search.getSearch()+"%");
 		
 		ResultSet rs=st.executeQuery();
-		rs.next();
-		
+		rs.next();		
 		int result= rs.getInt(1);
+		
 		DBConnector.disConnect(rs, st, con);
 		
 		return result;

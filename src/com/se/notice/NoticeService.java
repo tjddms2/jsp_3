@@ -134,7 +134,7 @@ public class NoticeService implements BoardService {
 			request.setAttribute("list", ar);							//속성추가
 			request.setAttribute("pager", pager);
 			request.setAttribute("board", "notice");
-			actionFoward.setPath("../WEB-INF/notice/noticeList.jsp");
+			actionFoward.setPath("../WEB-INF/view/board/boardList.jsp");
 		} catch (Exception e) {
 			request.setAttribute("message", "fail");
 			request.setAttribute("path", "../index.jsp");
@@ -163,7 +163,7 @@ public class NoticeService implements BoardService {
 			request.setAttribute("dto", boardDTO);
 			request.setAttribute("files", ar);
 				actionFoward.setCheck(true);
-			actionFoward.setPath("../WEB-INF/notice/noticeSelectOne.jsp");
+			actionFoward.setPath("../WEB-INF/view/board/boardSelectOne.jsp");
 		} catch (Exception e) {
 			actionFoward.setCheck(false);
 			actionFoward.setPath("./noticeList.do");

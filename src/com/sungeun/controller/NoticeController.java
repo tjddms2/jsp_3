@@ -46,6 +46,8 @@ public class NoticeController extends HttpServlet {
 			actionFoward = noticeService.selectList(request, response);
 		}else if(command.equals("/noticeSelectOne.do")){					//하나 골라옴
 			actionFoward = noticeService.selectOne(request, response);
+		}else if(command.equals("/noticeWrite.do")) {
+			actionFoward = noticeService.insert(request, response);
 		}
 		
 	if(actionFoward.isCheck()) { 											//view는 어디로 보낼건가?

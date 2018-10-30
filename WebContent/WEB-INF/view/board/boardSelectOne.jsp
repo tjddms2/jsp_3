@@ -4,12 +4,7 @@
 <%@page import="com.se.notice.NoticeDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%
-    BoardDTO boardDTO = (BoardDTO)request.getAttribute("dto");
-   /*  List<FilDTO> ar = (List<FilDTO>)request.getAttribute("files"); */
-    String board =(String)request.getAttribute("board");
-    	
-    %>
+   
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,20 +17,20 @@
 
 	<div class="container-fluid">
 	<div class="row">
-		<h1><%=board %> View</h1>
+		<h1>${requestScope.board} View</h1>
 	</div>
 	
 	<div class="row">
-		<h1>TITLE : <%= boardDTO.getTitle() %></h1>
-		<h1>WRITER : <%=boardDTO.getWriter() %></h1>
-		<h1>Contents: <%=boardDTO.getContents() %></h1>
+		<h1>TITLE : ${dto.title}</h1>
+		<h1>WRITER : ${dto.writer} </h1>
+		<h1>Contents:${dto.contents}</h1>
 		
 		</div>
 	</div>
 	<div>
-		<a href="./<%=board %>list.do">List</a>
-		<a href="./<%=board %>UpdateForm.do">Update</a>
-		<a href="./<%=board %>Delete.do">Delete</a>
+		<a href="./${requestScope.board}list.do">List</a>
+		<a href="./${requestScope.board}Update.do?num=${dto.num}">Update</a>
+		<a href="./${requestScope.board}Delete.do?num=${dto.num}">Delete</a>
 	</div>
 <jsp:include page="../../../temp/footer.jsp"></jsp:include>
 </body>
