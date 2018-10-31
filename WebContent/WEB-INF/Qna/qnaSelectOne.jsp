@@ -18,9 +18,9 @@
 <jsp:include page="../../temp/header.jsp"></jsp:include>
 	<div class="container-fluid">
 	<div class="row">
-		<h1>TITLE : <%= boardDTO.getTitle() %></h1>
-		<h1>WRITER : <%= boardDTO.getWriter() %></h1>
-		<h1>Contents: <%= boardDTO.getContents() %></h1>
+		<h1>TITLE : ${boardDTO.title} </h1>
+		<h1>WRITER :${boardDTO.writer}</h1>
+		<h1>Contents:${boardDTO.contents}</h1>
 		
 		</div>
 	</div>

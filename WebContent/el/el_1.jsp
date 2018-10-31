@@ -19,7 +19,7 @@
     map.put("f1", "name1");
     map.put("f2", "name2");
     map.put("f3", "name3");
-    request.setAttribute("ar", "m");
+    request.setAttribute("m", map);
     %>
 <!DOCTYPE html>
 <html>
