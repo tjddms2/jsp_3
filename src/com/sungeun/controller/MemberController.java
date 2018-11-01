@@ -20,15 +20,15 @@ import com.se.member.MemberService;
 @WebServlet("/MemberController")
 public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       private MemberService memberService;
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public MemberController() {
-        super();
-        // TODO Auto-generated constructor stub
-        memberService = new MemberService();
-    }
+	private MemberService memberService;
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public MemberController() {
+		super();
+		// TODO Auto-generated constructor stub
+		memberService = new MemberService();
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -42,16 +42,22 @@ public class MemberController extends HttpServlet {
 		
 		if(command.equals("/memberJoin.do")) {
 			actionFoward = memberService.join(request, response);
-		}else if(command.equals("/memeberLogin.do")) {
+			
+		}else if(command.equals("/memberLogin.do")) {
 			actionFoward= memberService.login(request, response);
+			
 		}else if(command.equals("/memberLogout.do")) {
 			actionFoward= memberService.logout(request, response);
+			
 		}else if(command.equals("/memberMyPage.do")){
 			actionFoward= memberService.myPage(request, response);
+			
 		}else if(command.equals("/memberDelete.do")){
 			actionFoward = memberService.delete(request, response);
+			
 		}else if(command.equals("/memberUpdate.do")) {
 		actionFoward = memberService.update(request, response);
+		
 		}else{
 			
 			actionFoward = new ActionFoward();

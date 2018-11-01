@@ -10,11 +10,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<c:import url="../../../temp/bootstrap.jsp"></c:import>
+<c:import url="../../../temp/bootstrap.jsp"/>
 </head>
 <body>
-<c:import url="../../../temp/header.jsp"></c:import>
-
+<c:import url="../../../temp/header.jsp"/>
 <div class="container-fluid">
 <div class="row">
 <form action="./memberJoin.do" method="post" enctype="multipart/form-data">
@@ -36,14 +35,19 @@
 	    </div>
 	    
 	    <div class="form-group">
-	      <label for="email">ClassMate:</label>
-	      <input type="text" class="form-control" id="email" placeholder="Enter Email" name="classMate">
-	    </div>
-	    
-	    <div class="form-group">
 	      <label for="email">Email:</label>
 	      <input type="text" class="form-control" id="email" placeholder="Enter Email" name="email">
 	    </div>
+	    
+	     <div class="form-group">
+	      <label for="Kind">Kind:</label>
+	      <input type="text" class="form-control" id="Kind" placeholder="Enter Kind" name="Kind">
+	    </div>
+	    <div class="form-group">
+	      <label for="ClassMate">ClassMate:</label>
+	      <input type="text" class="form-control" id="ClassMate" placeholder="Enter ClassMate" name="classMate">
+	    </div>
+	    
 	    
 	    <div class="form-group">
 	      <label for="file">file:</label>
@@ -57,6 +61,6 @@
 </div>
 
 	
-<c:import url="../../../temp/footer.jsp"></c:import>
+<c:import url="../../../temp/footer.jsp"/>
 </body>
 </html>

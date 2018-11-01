@@ -20,16 +20,16 @@
 			<h1>ID: ${member.id}</h1>
 			<h1>Name: ${member.name}</h1>
 			<h1>Email: ${member.email}</h1>
-		<img src="../upload/${member.fname}">
+			<img src="../upload/${member.fname}">
 		</div>
-	<div class="row">
-	<a href="./memberUpdate.do">Update</a>	
-	<a href="memberDelete.do">Delete</a>
-	</div>
-	</div>
-<!-- ./memberUpdate.do \  memberDelete.do
+		<div class="row">
+			<a href="./memberUpdate.do">Update</a> ]
+			<a href="memberDelete.do">Delete</a>
+	<!-- ./memberUpdate.do \  memberDelete.do
 				 둘다 현재위치 가리키는것  -->
+		</div>
+	</div>
 
-	<c:import url="../../../temp/footer.jsp"/>
+	<c:import url="../../../temp/footer.jsp" />
 </body>
 </html>

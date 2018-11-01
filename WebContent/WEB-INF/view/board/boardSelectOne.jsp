@@ -13,7 +13,7 @@
 <jsp:include page="../../../temp/bootstrap.jsp"></jsp:include>
 </head>
 <body>
-<jsp:include page="../../../temp/header.jsp"></jsp:include>
+<c:import url="../../../temp/header.jsp"/>
 
 	<div class="container-fluid">
 	<div class="row">

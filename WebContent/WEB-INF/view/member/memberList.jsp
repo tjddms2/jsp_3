@@ -10,25 +10,25 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<c:import url="../../../temp/bootstrap.jsp"></c:import>
+<c:import url="../../../temp/bootstrap.jsp"/>
 </head>
 <body>
-<c:import url="../../../temp/header.jsp"></c:import>
+<c:import url="../../../temp/header.jsp"/>
 
 	<div class="container-fluid">
 		<div class="row">
 			<c:choose>
 				<c:when test="${not empty member}">
 					<!-- 로그인 후  -->
-					<h2>${member.id}님 환영합니다.</h2>	
-					<a href="./memberLogout.bo">Logout</a>
-					<a href="./memberMyPage.bo">MyPage</a>
+					<h3>${member.id} 님 환영합니다.</h3>	
+					<a href="./memberLogout.do">Logout</a>
+					<a href="./memberMyPage.do">MyPage</a>
 				</c:when>
 				
 				<c:otherwise>
 					<!-- 로그인 전 -->
-					<a href="./memberLogin.bo">Login</a>
-					<a href="./memberJoin.bo">Join</a>
+					<a href="./memberLogin.do">Login</a>
+					<a href="./memberJoin.do">Join</a>
 
 				</c:otherwise>
 			</c:choose>
@@ -38,6 +38,6 @@
 	</div>
 
 
-	<c:import url="../../../temp/footer.jsp"></c:import>
+	<c:import url="../../../temp/footer.jsp"/>
 </body>
 </html>

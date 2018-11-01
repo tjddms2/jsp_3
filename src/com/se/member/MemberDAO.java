@@ -34,24 +34,29 @@ public class MemberDAO {
 		DBConnector.disConnect(st, con);
 		return result;	
 	}
-	//탈퇴
+	//탈퇴 : delete
 	public int delete(MemberDTO memberDTO) throws Exception{
-		Connection con=DBConnector.getConnect();
-		String sql="delete member where id=?";
+		Connection con = DBConnector.getConnect();
+		
+		String sql = "delete member where id=?";
+		
 		PreparedStatement st = con.prepareStatement(sql);
 		
 		st.setString(1, memberDTO.getId());
 		
-	int result= st.executeUpdate();
-	DBConnector.disConnect(st, con);
-	return result;
+		int result= st.executeUpdate();
+	
+		DBConnector.disConnect(st, con);
+		
+		return result;
 		
 	}
 	
-	//수정
+	//수정 : update
 	public int update(MemberDTO memberDTO) throws Exception{
 		Connection con = DBConnector.getConnect();
-		String sql="update member set pw=?, name=?, email=?, oName=? fname=? where id=?";
+		
+		String sql="update member set pw=?, name=?, email=?, fname=?, oName=? where id=?";
 		
 		PreparedStatement st = con.prepareStatement(sql);
 		st.setString(1, memberDTO.getPw());
@@ -66,8 +71,11 @@ public class MemberDAO {
 		return result;
 	}
 	
-	//로그인
+	//로그인 : login
 	public MemberDTO login(MemberDTO memberDTO) throws Exception {
+		System.out.println(memberDTO.getId());
+		System.out.println(memberDTO.getPw());
+		System.out.println(memberDTO.getKind());
 		Connection con = DBConnector.getConnect();
 		String sql="select * from member where id=? and pw=? and kind=?";
 		
@@ -79,10 +87,11 @@ public class MemberDAO {
 		ResultSet rs= st.executeQuery();
 		
 		if(rs.next()) {
-		memberDTO.setName(rs.getString("name"));
-		memberDTO.setEmail(rs.getString("email"));
-		memberDTO.setClassMate(rs.getString("classMate"));
-		memberDTO.setFname(rs.getString("Fname"));              // fName = photo
+			memberDTO.setName(rs.getString("name"));
+			memberDTO.setEmail(rs.getString("email"));
+			memberDTO.setClassMate(rs.getString("classMate"));
+			memberDTO.setFname(rs.getString("Fname"));              // fName = photo
+			memberDTO.setOname(rs.getString("oname"));
 		}else {
 			memberDTO = null;
 		}

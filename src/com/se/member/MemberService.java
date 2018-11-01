@@ -44,6 +44,9 @@ public class MemberService {
 				memberDTO.setEmail(request.getParameter("email"));
 				memberDTO.setFname(sessionDTO.getFname());
 				memberDTO.setOname(sessionDTO.getOname());
+				memberDTO.setKind(sessionDTO.getKind());
+				memberDTO.setClassMate(sessionDTO.getClassMate());
+				
 				file =multi.getFile("f1");
 				/*System.out.println("ffff: "+file.exists());*/
 				/*System.out.println(file.exists());*/
@@ -55,6 +58,7 @@ public class MemberService {
 				}
 				int result = memberDAO.update(memberDTO);
 				if(result>0) {
+					request.getSession().setAttribute("member", memberDTO);
 					message="Update 성공!";
 				}
 			} catch (Exception e) {
