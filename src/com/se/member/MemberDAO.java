@@ -35,6 +35,18 @@ public class MemberDAO {
 		return result;	
 	}
 	//탈퇴
+	public int delete(MemberDTO memberDTO) throws Exception{
+		Connection con=DBConnector.getConnect();
+		String sql="delete member where id=?";
+		PreparedStatement st = con.prepareStatement(sql);
+		
+		st.setString(1, memberDTO.getId());
+		
+	int result= st.executeUpdate();
+	DBConnector.disConnect(st, con);
+	return result;
+		
+	}
 	
 	//수정
 	
