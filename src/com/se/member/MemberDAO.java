@@ -39,5 +39,27 @@ public class MemberDAO {
 	//수정
 	
 	//로그인
+	public MemberDTO login(MemberDTO memberDTO) throws Exception {
+		Connection con = DBConnector.getConnect();
+		String sql="select * from member where id=? and pw=? and kind=?";
+		
+		PreparedStatement st= con.prepareStatement(sql);
+		st.setString(1, memberDTO.getId());
+		st.setString(2, memberDTO.getPw());
+		st.setString(3, memberDTO.getKind());
+		
+		ResultSet rs= st.executeQuery();
+		
+		if(rs.next()) {
+		memberDTO.setName(rs.getString("name"));
+		memberDTO.setEmail(rs.getString("email"));
+		memberDTO.setClassMate(rs.getString("classMate"));
+		memberDTO.setFname(rs.getString("Fname"));              // fName = photo
+		}else {
+			memberDTO = null;
+		}
+		DBConnector.disConnect(rs, st, con);
+		return memberDTO;
+	}
 	
 }

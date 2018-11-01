@@ -1,14 +1,14 @@
 package com.se.member;
 
 import java.io.File;
-import java.io.IOException;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.se.action.ActionFoward;
+import com.sun.accessibility.internal.resources.accessibility;
 
 public class MemberService {
 
@@ -16,6 +16,65 @@ public class MemberService {
 	
 	public MemberService(){
 		memberDAO = new MemberDAO();			
+	}
+	//myPage
+	public ActionFoward myPage(HttpServletRequest request, HttpServletResponse response) {
+		ActionFoward actionFoward= new ActionFoward();
+		
+		actionFoward.setCheck(true);
+		actionFoward.setPath("./WEB-INF/view/member/memberList.do?");
+		
+		return actionFoward;
+	}
+	
+	//logout
+	public ActionFoward logout(HttpServletRequest request, HttpServletResponse response) {
+		ActionFoward actionFoward= new ActionFoward();
+		
+		HttpSession session= request.getSession();
+		session.invalidate(); //시간을 삭제
+		
+		actionFoward.setCheck(false); 
+		actionFoward.setPath("../index.jsp");
+		
+		return actionFoward;
+	}
+	
+	//login
+	public ActionFoward login(HttpServletRequest request, HttpServletResponse response) {
+		ActionFoward actionFoward = new ActionFoward();
+		
+		String method= request.getMethod();
+		
+		if(method.equals("POST")) {
+		
+		MemberDTO memberDTO = new MemberDTO();
+		memberDTO.setId(request.getParameter("id"));
+		memberDTO.setPw(request.getParameter("pw"));
+		memberDTO.setKind(request.getParameter("kind"));
+		
+		try {
+			memberDTO = memberDAO.login(memberDTO);
+		
+		} catch (Exception e) {
+			memberDTO = null;
+			e.printStackTrace();
+		}
+		if(memberDTO!=null) {	//member not null이라면
+			HttpSession session = request.getSession();	//리턴이 session
+			session.setAttribute("member", memberDTO);
+			actionFoward.setCheck(false);	//부정을  하면 리다이넥트로 갈수있음!
+			actionFoward.setPath("../index.jsp"); //리다이넥트의 경로
+		}else {
+			request.setAttribute("message", "login Fail");
+			actionFoward.setCheck(true); 
+			actionFoward.setPath("../WEB-INF/view/member/memberLogin.jsp");
+		}
+		}else {//get
+			actionFoward.setCheck(true);
+			actionFoward.setPath("../WEB-INF/view/member/memberLogin.jsp");
+		}
+		return actionFoward;
 	}
 	
 	//join
@@ -43,6 +102,8 @@ public class MemberService {
 				memberDTO.setEmail(multi.getParameter("email"));
 				memberDTO.setKind(multi.getParameter("kind"));
 				memberDTO.setClassMate(multi.getParameter("classMate"));
+				memberDTO.setFname(multi.getFilesystemName("fName"));
+				memberDTO.setOname(multi.getOriginalFileName("oName"));
 				/*
 				 *  파일의 정보를 DTO에 추가  
 				 * 

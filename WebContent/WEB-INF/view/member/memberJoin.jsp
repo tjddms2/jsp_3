@@ -46,8 +46,8 @@
 	    </div>
 	    
 	    <div class="form-group">
-	      <label for="ClassMate">ClassMate</label>
-	      <input type="text" class="form-control" id="classMate" placeholder="Enter ClassMate" name="classMate">
+	      <label for="file">file:</label>
+	      <input type="text" class="form-control" id="file" placeholder="Enter file" name="file">
 	    </div>
 	
 	  	    
