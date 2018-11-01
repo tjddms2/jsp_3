@@ -49,6 +49,7 @@ public class MemberController extends HttpServlet {
 		}else if(command.equals("/memberMyPage.do")){
 			actionFoward= memberService.myPage(request, response);
 		}else{
+			
 			actionFoward = new ActionFoward();
 			actionFoward.setCheck(true);
 			actionFoward.setPath("../WEB-INF/view/member/memberList.jsp");
