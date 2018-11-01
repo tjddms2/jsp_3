@@ -1,6 +1,8 @@
 package com.se.member;
 
 import java.io.File;
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -18,7 +20,66 @@ public class MemberService {
 	public MemberService(){
 		memberDAO = new MemberDAO();			
 	}
-	
+	//update
+	public ActionFoward update(HttpServletRequest request, HttpServletResponse response) {
+		ActionFoward actionFoward = new ActionFoward();
+		String method= request.getMethod();
+		if(method.equals("POST")) {
+			//Post,
+			int max= 1024*1024*10;
+			String path=request.getServletContext().getRealPath("upload");
+			File file = new File(path);
+			if(!file.exists()) {
+				file.mkdirs();
+			}
+			String message ="update 실패입니다.";
+			try {
+				
+				MultipartRequest multi = new MultipartRequest(request, path, max, "UTF-8", new DefaultFileRenamePolicy());
+				MemberDTO memberDTO = new MemberDTO();
+				MemberDTO  sessionDTO = (MemberDTO)request.getSession().getAttribute("member");
+				memberDTO.setId(request.getParameter("id"));
+				memberDTO.setPw(request.getParameter("pw"));
+				memberDTO.setName(request.getParameter("name"));
+				memberDTO.setEmail(request.getParameter("email"));
+				memberDTO.setFname(sessionDTO.getFname());
+				memberDTO.setOname(sessionDTO.getOname());
+				file =multi.getFile("f1");
+				/*System.out.println("ffff: "+file.exists());*/
+				/*System.out.println(file.exists());*/
+				if(file != null) {
+					file = new File(path, memberDTO.getFname());
+					file.delete();
+					memberDTO.setFname(multi.getFilesystemName("f1"));
+					memberDTO.setOname(multi.getOriginalFileName("f1"));
+				}
+				int result = memberDAO.update(memberDTO);
+				if(result>0) {
+					message="Update 성공!";
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			request.setAttribute("message", message);
+			request.setAttribute("path", "./memeberMyPage.do");
+			
+			actionFoward.setCheck(true);
+			actionFoward.setPath("../WEB-INF/view/common/result.jsp");
+			
+		}else {
+			//get
+			actionFoward.setCheck(true);
+			actionFoward.setPath("../WEB-INF/view/member/memberUpdate.jsp");
+		}
+		
+		
+		
+		
+		
+		
+		return actionFoward;
+	}
 	
 	
 	
