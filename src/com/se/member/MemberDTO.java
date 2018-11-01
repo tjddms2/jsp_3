@@ -1,19 +1,29 @@
 package com.se.member;
 
-public class memberDTO {
-	private int num;
+public class MemberDTO {
+
 	private String Id;
 	private String pw;
 	private String name;
 	private String email;
 	private String kind;
 	private String classMate;
+	private String fname;
+	private String oname;
 	
-	public int getNum() {
-		return num;
+	
+	
+	public String getFname() {
+		return fname;
 	}
-	public void setNum(int num) {
-		this.num = num;
+	public void setFname(String fname) {
+		this.fname = fname;
+	}
+	public String getOname() {
+		return oname;
+	}
+	public void setOname(String oname) {
+		this.oname = oname;
 	}
 	public String getId() {
 		return Id;
