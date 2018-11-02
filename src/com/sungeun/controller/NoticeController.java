@@ -31,9 +31,8 @@ public class NoticeController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");								//들어올때
-		response.setCharacterEncoding("UTF-8");								//나갈때
-		
+		String phone=request.getServletContext().getInitParameter("phone");
+		System.out.println(phone);
 		// /notice/notice***.do
 		// /notice***.do
 		String command = request.getPathInfo();								//뒤에있는 주소만 나옴(폴더 뺴고)

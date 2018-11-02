@@ -41,15 +41,16 @@ public class QnaService implements BoardService{
 		//selectOne
 		public ActionFoward selectOne(HttpServletRequest request, HttpServletResponse response) {
 			ActionFoward actionFoward = new ActionFoward();
+			
 			actionFoward.setCheck(false);
 			actionFoward.setPath("./qnaList.do");
-			BoardDTO boardDTO =null;
+			BoardDTO boardDTO = null;
 			
 			try {
 				int num= Integer.parseInt(request.getParameter("num"));
 				 boardDTO = qnaDAO.selectOne(num);
 				
-				request.setAttribute("dto", "boardDTO");
+				request.setAttribute("dto", boardDTO);
 				request.setAttribute("board", "qna");
 				actionFoward.setPath("../WEB-INF/view/board/qnaSelectOne.jsp");
 				actionFoward.setCheck(true);

@@ -3,11 +3,13 @@ package com.sungeun.controller;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.jsp.jstl.core.Config;
 
 import com.se.action.ActionFoward;
 import com.se.qna.QnaService;
@@ -26,16 +28,20 @@ public class QnaController extends HttpServlet {
     public QnaController() {
         super();
         qnaService = new QnaService();
+        
         // TODO Auto-generated constructor stub
     }
-
+    @Override
+    public void init() throws ServletException {
+    	String board = Config.getInitParameter("board");
+    	
+    }
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
-		
+		String board = this.getServletConfig().getInitParameter("board");
+		System.out.println(board);
 		String command = request.getPathInfo();
 		
 		ActionFoward actionFoward = null;
@@ -44,6 +50,8 @@ public class QnaController extends HttpServlet {
 			actionFoward =  qnaService.selectList(request, response);
 		}else if(command.equals("/qnaSelectOne.do")) {
 			actionFoward= qnaService.selectOne(request, response);
+			}else if(command.equals("/qnaWrite.do")) {
+			actionFoward = qnaService.insert(request, response);
 		}
 		
 		if(actionFoward.isCheck()) {

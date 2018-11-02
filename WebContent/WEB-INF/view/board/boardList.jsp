@@ -109,17 +109,26 @@
 				</div>
 
 			</div>
-
-
-
-		</div>
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-md-1">
-					<a href="./${board}Write.do" class="btn btn-primary"></a>
-				</div>
-			</div>
-		</div>
+	</div>
+	
+	<c:choose>
+		<c:when test="${board eq 'notice'}">
+	<c:if test="${not empty member and member.kind eq 't'}"> <!-- 선생님아이디랑 같지 않더라면? -->
+		<c:import url="../../../temp/writebutton.jsp"/>
+		
+		</c:if>
+		
+		
+		</c:when>
+		<c:otherwise>
+		<c:if test="${not empty member}"> <!-- 선생님아이디랑 같지 않더라면? -->
+		<c:import url="../../../temp/writebutton.jsp"/>
+		</c:if>
+		
+		</c:otherwise>
+	
+	</c:choose>
+		
 		
 		<jsp:include page="../../../temp/footer.jsp"></jsp:include>
 </body>
