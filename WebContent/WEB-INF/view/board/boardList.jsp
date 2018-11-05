@@ -18,7 +18,6 @@
 <%@ include file="../../../temp/bootstrap.jsp" %>
 </head>
 <body>
-
 <c:import url="../../../temp/header.jsp">
 
 <c:param name="test" value="3"></c:param>

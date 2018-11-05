@@ -5,7 +5,7 @@
     <param-value>555-5555</param-value>
   </context-param>
   
- <filter>
+  <filter>
     <filter-name>encoding</filter-name>
     <filter-class>com.se.filter.CharacterFilter</filter-class>
     <init-param>
@@ -17,6 +17,15 @@
     <filter-name>encoding</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+  
+  <servlet>
+  	<servlet-name>memo</servlet-name>
+  	<servlet-class>com.sungeun.controlloer.MemoController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>memo</servlet-name>
+  <url-pattern>/memo/*</url-pattern>
+  </servlet-mapping>
   <servlet>
     <servlet-name>member</servlet-name>
     <servlet-class>com.sungeun.controller.MemberController</servlet-class>

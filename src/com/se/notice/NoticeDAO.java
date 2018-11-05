@@ -54,7 +54,7 @@ public class NoticeDAO implements BoardDAO {
 		
 	}
 
-	@Override
+	@Override//selectOne
 	public BoardDTO selectOne(int num) throws Exception {
 		Connection con=DBConnector.getConnect();
 		String sql="select * from notice where num=?";
@@ -90,7 +90,7 @@ public class NoticeDAO implements BoardDAO {
 		return num;
    }
 
-	@Override
+	@Override //insert
 	public int insert(BoardDTO boardDTO) throws Exception {
 		Connection con =DBConnector.getConnect();
 		
@@ -108,7 +108,7 @@ public class NoticeDAO implements BoardDAO {
 		
 	}
 
-	@Override
+	@Override //update
 	public int update(BoardDTO boardDTO) throws Exception {
 		Connection con =DBConnector.getConnect();
 		String sql ="update notice set title=?, contents=?, writer=? where num=?";
@@ -122,7 +122,7 @@ public class NoticeDAO implements BoardDAO {
 		return result;
 	}
 
-	@Override
+	@Override //delete
 	public int delete(int num) throws Exception {
 	Connection con =DBConnector.getConnect();
 	String sql="delete notice where num=?";
@@ -133,7 +133,7 @@ public class NoticeDAO implements BoardDAO {
 		return result;
 	}
 
-	@Override
+	@Override //getcount
 	public int getCount(Search search) throws Exception {
 		Connection con= DBConnector.getConnect();
 		String sql="select count(num) from notice"+" where "+search.getKind()+" like ?";
