@@ -17,19 +17,47 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <jsp:include page="../../../temp/bootstrap.jsp"></jsp:include>	
+<script src="https://cdn.ckeditor.com/4.10.1/full/standard/ckeditor.js"> /*full : 모든 메뉴를 다 넣겠다!*/
+</script>
 <script type="text/javascript">
 	$(function() {
+	CKEDITOR.replace("contents")
+		
 		$("#btn").click(function(){
-			var.title = $("#title").val();
+			var title = $("#title").val();
 			if(title!=''){	/*타이틀의 벨류가 같지 않다면 */
 				$("#frm").submit();
 			}else {
 				alert("Title을 입력");
 			}
 		});
+		
+		var count=1;
+		var index=0;
+		$("#add").click(function(){
+			if(count<6){
+			var r= '<div class="form-group" id="f'+index+'">';
+			r = r+'<label for="file">File:</label>';
+			r = r+' <input type="file" class="form-control" id="file"  name="f'+index+'">';
+			r = r+'<span class="remove" title="'+index+'">X</span>';
+			r = r+'</div>';
+		
+		$("#file").append(r);
+		count++;
+		index++;
+			}else {
+				alert("파일의 5개 까지 가능합니다.");
+			}
+		});
+		$("#file").on("click",".remove", function(){
+			var t= $(this).attr("title");
+			$("#f"+t).remove();
+			count--; // count는 감소 시켜야됨!
+		});
 	});
 
 </script>
+
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
 
@@ -62,11 +90,11 @@
 	    <div class="files" id="file">
 	    
 	    </div>
-	    <input type="button" id="btn" value="write" class="btn btn-default">
+	    <input type="button" id="btn" value="write" class="btn btn-defualt">
  	 </form>
  	 </div>
 	</div>
-</div>
+
 
 
 <jsp:include page="../../../temp/footer.jsp"></jsp:include>

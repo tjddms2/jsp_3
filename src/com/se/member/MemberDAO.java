@@ -12,6 +12,21 @@ import com.se.util.DBConnector;
 
 public class MemberDAO {
 	// 삭제, 가입 , 탈퇴 , 수정 ,로그인, 포토
+	//check id
+	public boolean checkid(String id)throws Exception{
+		boolean check =  true;
+		Connection con = DBConnector.getConnect();
+		String sql="select id from member where id=?";
+		
+		PreparedStatement st= con.prepareStatement(sql);
+		st.setString(1, id);
+		
+		ResultSet rs= st.executeQuery();
+		check= rs.next();/*한줄읽었을때 진실,거짓*/
+		DBConnector.disConnect(rs, st, con);
+		
+		return check;
+	} 
 	
 	
 	//가입-Join

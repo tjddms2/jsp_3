@@ -20,6 +20,29 @@ public class MemberService {
 	public MemberService(){
 		memberDAO = new MemberDAO();			
 	}
+	//checkId
+	public ActionFoward checkId(HttpServletRequest request, HttpServletResponse response) {
+		ActionFoward actionFoward = new ActionFoward();
+		String id= request.getParameter("id");
+		boolean check =  true;
+		String result="1"; /*사용가능 , */
+		try {
+			check = memberDAO.checkid(id);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		if(check) {
+			result="2";/*1:사용가능 2:사용불가능*/
+		}
+		request.setAttribute("result", result);
+		actionFoward.setCheck(true);
+		actionFoward.setPath("./WEB-INF/view/member/memberCheckid.do?");
+		
+		
+		
+		return actionFoward;
+	}
 	//update
 	public ActionFoward update(HttpServletRequest request, HttpServletResponse response) {
 		ActionFoward actionFoward = new ActionFoward();

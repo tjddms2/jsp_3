@@ -30,7 +30,7 @@ public class ApplicationListener implements ServletContextListener {
      */
     public void contextInitialized(ServletContextEvent sce)  { 
          // TODO Auto-generated method stub
-    	sce.getServletContext().getInitParameter("upload");
+    String	upload = sce.getServletContext().getInitParameter("upload");
     }
 	
 }

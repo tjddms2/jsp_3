@@ -47,15 +47,17 @@ public class LoginCheck implements Filter {
 
 		// pass the request along the filter chain
 		String command =((HttpServletRequest)request).getPathInfo();
+		System.out.println(command);
 		String check= map.get(command);
+		System.out.println(check);
 		if(check != null) {
-		HttpSession session =((HttpServletRequest)request).getSession();
-		MemberDTO memberDTO =(MemberDTO)request.getAttribute("memberDTO");
+			HttpSession session =((HttpServletRequest)request).getSession();
+			MemberDTO memberDTO =(MemberDTO)session.getAttribute("member");
 		if(memberDTO != null) {
 			chain.doFilter(request, response);
 		}else {
-			((HttpServletResponse)response).sendRedirect("../index.jsp");
-		}
+				((HttpServletResponse)response).sendRedirect("../index.jsp");
+		  }
 		}else {
 			chain.doFilter(request, response);
 		}

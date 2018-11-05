@@ -3,13 +3,13 @@ package com.sungeun.controller;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
-
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.jsp.jstl.core.Config;
+
 
 import com.se.action.ActionFoward;
 import com.se.qna.QnaService;
@@ -32,8 +32,8 @@ public class QnaController extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
     @Override
-    public void init() throws ServletException {
-    	String board = Config.getInitParameter("board");
+    public void init(ServletConfig config) throws ServletException {
+    	String board=config.getInitParameter("board");
     	
     }
 	/**

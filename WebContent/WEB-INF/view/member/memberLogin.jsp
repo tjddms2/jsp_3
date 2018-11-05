@@ -11,6 +11,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="../../../temp/bootstrap.jsp"/>
+
 </head>
 <body>
 <c:import url="../../../temp/header.jsp"/>
