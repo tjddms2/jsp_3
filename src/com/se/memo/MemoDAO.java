@@ -11,6 +11,22 @@ import com.se.util.DBConnector;
 
 public class MemoDAO {
 
+	public static void main(String[] args) {
+		MemoDAO memoDAO = new MemoDAO();
+		for(int i=0; i<40;i++) {
+			MemoDTO memoDTO = new MemoDTO();
+			memoDTO.setContents("m"+i);
+			memoDTO.setWriter("w"+i);
+			try {
+				memoDAO.insert(memoDTO);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		System.out.println("finish");
+	}
+	
 	public int insert(MemoDTO memoDTO) throws Exception{
 		Connection con = DBConnector.getConnect();
 		String sql = "insert into memo values(memo_seq.nextval, ?, ?, sysdate)";

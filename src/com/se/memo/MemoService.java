@@ -17,6 +17,8 @@ public class MemoService {
 		memoDAO = new MemoDAO();
 	}
 	
+	
+	
 	//insert
 	public ActionFoward insert(HttpServletRequest request, HttpServletResponse response) {
 		ActionFoward actionFoward = new ActionFoward();
@@ -40,12 +42,22 @@ public class MemoService {
 		actionFoward.setPath("../WEB-INF/view/common/resultAjax.jsp");
 		return actionFoward;
 	}
+	
+	
+	
 	public ActionFoward selectList(HttpServletRequest request, HttpServletResponse response) {
 		ActionFoward actionFoward = new ActionFoward();
 		
 		//1.curPage
 		//2.kind,search
-		int curPage=Integer.parseInt(request.getParameter("curPage"));
+		
+		int curPage=1;
+				
+		try {		
+			curPage=Integer.parseInt(request.getParameter("curPage"));
+		}catch(Exception e){
+			
+		}
 		MakePager makePager = new MakePager(curPage, "", "");
 		RowNumber rowNumber = makePager.makeRow();
 		try {
@@ -55,8 +67,16 @@ public class MemoService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		String path=request.getPathInfo();
+		
+	//memoList.do -> path : MemoList.jsp
+		/*path = path.substring(0, path.lastIndexOf("."));  //lastIndexof : 마지막꺼 찾는것*/
+	//memoMore.do -> path : MemoMore.jsp
+		
+		/*path = path+".jsp";*/
+		path =path.replace(".do", ".jsp");   //바꾸는 방식이 다를수 있다.
 		actionFoward.setCheck(true);
-		actionFoward.setPath("./WEB-INF/view/memo/memoList.jsp");
+		actionFoward.setPath("./WEB-INF/view/memo"+path);
 		
 		return actionFoward;
 	}

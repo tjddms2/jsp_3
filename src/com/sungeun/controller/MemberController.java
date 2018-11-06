@@ -26,7 +26,6 @@ public class MemberController extends HttpServlet {
 	 */
 	public MemberController() {
 		super();
-		// TODO Auto-generated constructor stub
 		memberService = new MemberService();
 	}
 
@@ -55,7 +54,7 @@ public class MemberController extends HttpServlet {
 			
 		}else if(command.equals("/memberUpdate.do")) {
 		actionFoward = memberService.update(request, response);
-		}else if(command.equals("./memberCheckid.do")) {
+		}else if(command.equals("/memberCheckid.do")) {
 			actionFoward = memberService.checkId(request, response);
 		
 		}else{

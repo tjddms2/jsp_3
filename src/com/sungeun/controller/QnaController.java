@@ -28,12 +28,11 @@ public class QnaController extends HttpServlet {
     public QnaController() {
         super();
         qnaService = new QnaService();
-        
-        // TODO Auto-generated constructor stub
+      
     }
     @Override
     public void init(ServletConfig config) throws ServletException {
-    	String board=config.getInitParameter("board");
+    	String board = config.getInitParameter("board");
     	
     }
 	/**

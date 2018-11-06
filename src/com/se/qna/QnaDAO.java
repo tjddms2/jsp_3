@@ -35,9 +35,9 @@ public class QnaDAO implements BoardDAO, BoardReply {
 		Connection con= DBConnector.getConnect();
 		String sql="select * from "
 				+ "(select rownum R, N.* from "
-				+ "(select * from qna"
+				+ "(select * from qna "
 				+ "where "+rowNumber.getSearch().getKind()+" like ? "
-				+ "order by num desc) N) "
+				+ "order by ref desc, step asc) N) "
 				+ "where R between ? and ?";
 		PreparedStatement st = con.prepareStatement(sql);
 		

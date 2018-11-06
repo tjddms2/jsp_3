@@ -20,7 +20,7 @@
   
   <servlet>
   	<servlet-name>memo</servlet-name>
-  	<servlet-class>com.sungeun.controlloer.MemoController</servlet-class>
+  	<servlet-class>com.sungeun.controller.MemoController</servlet-class>
   </servlet>
   <servlet-mapping>
   <servlet-name>memo</servlet-name>

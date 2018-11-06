@@ -11,14 +11,20 @@
 <c:import url="../../../temp/bootstrap.jsp"/>
 <script type="text/javascript">
 $(function(){
+	$("#more").click(function(){
+		/*1. alert("test"); 창이뜨는지 시작하고 지우기: 아직 안나오니까..기다리기*/
+		$.get("./memoMore.do",function(data){
+			alert(data);
+		});
+		
+	});
+	
 	$("#write"),click(function(){
 		var writer =$("#writer").val();
 		var contents =$("#contents").val();
-		
-		var xhp= new XMLHttpRequest();
-		xhp.open("GET","../../../memoList.jsp");
-		xhp.send();
-		
+		$.post("./memoWrite.do",{writer:writer,contents:contents});
+		alert(data);
+		location.reload();
 		
 	});
 });
@@ -34,7 +40,7 @@ $(function(){
    </div>
    <div class="form-group">
        <label for="contents">CONTENTS:</label>
-       <textarea rows="15" cols="" class="form-control" name="contents"></textarea>
+       <textarea rows="10" cols="" class="form-control" name="contents"></textarea>
    </div>
    
    <input type="button" id="write" value="write">
@@ -42,6 +48,7 @@ $(function(){
   <div class="row">
        <table class="table table-hover">
           <tr>
+          		<td></td>
              <td>NUM</td>
              <td>CONTENTS</td>
              <td>WRITER</td>
@@ -49,13 +56,19 @@ $(function(){
           </tr>       
           <c:forEach items="${list}" var="m">
              <tr>
+             	<td><input type="checkbox" name="del" class="del" id="${m.num}"></td>
                 <td>${m.num}</td>
                 <td>${m.contents}</td>
                 <td>${m.writer}</td>
                 <td>${m.reg_date}</td>
              </tr>
           </c:forEach>
-       </table>     
+       </table> 
+       <button id="more">더 보기</button>
+           
+  </div>
+  <div class="row">
+  <button id="del">DEL</button>
   </div>
 </div>
 

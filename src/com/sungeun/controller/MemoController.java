@@ -19,7 +19,7 @@ import com.se.memo.MemoService;
 public class MemoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private MemoService memoService;
-       
+     
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -34,11 +34,12 @@ public class MemoController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String command = request.getPathInfo();
-		ActionFoward actionFoward = null;
-		
-		
+		ActionFoward actionFoward =null;
+	
 		if(command.equals("/memoList.do")) {
 			actionFoward = memoService.selectList(request, response);
+		}else if(command.equals("/memoMore.do")) {
+		actionFoward = memoService.selectList(request, response);
 		}else if(command.equals("/memoWrite.do")) {
 			actionFoward = memoService.insert(request, response);
 		}
