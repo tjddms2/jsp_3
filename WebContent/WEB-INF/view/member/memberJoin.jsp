@@ -20,18 +20,16 @@
 	 
 		$("#join").click(function(){
 			var check = $("#idcheck").val();
-			if(check=='s'){
-				alert("ok");
+			if(check == 's'){
+				alert("OK");
 			}else {
-				alert("ID중복체크");
+				alert("ID 중복 체크");
 			}
 		});
-	});
-	      $(function myfunction(){
-	    	 $("#btn").click(function(){
-	    		
-	    		 var id=document.frm.id.value;
+	
+	    $("#btn").click(function(){
 	    		/*  var id=$("#id").val(); */
+	    		var id = document.frm.id.value;
 	    		window.open("./memberCheckid.do?id="+id, "", "width=300, height=200, top=300, left=500"); /*GET 방식*/
 	    	 });
 	      });
@@ -43,10 +41,11 @@
 <div class="row">
 <form name="frm" action="./memberJoin.do" method="post" enctype="multipart/form-data">
 	<input type="hidden" value="f" id="idcheck" name="idcheck">
+	
 	    <div class="form-group">
 	      <label for="id">Id:</label>
-	      <input type="text" class="form-control" id="id" placeholder="Enter id" name="id">
-	      <input type="button" id="id" value="증복확인"> 
+	      <input type="text" class="form-control" id="id" placeholder="Enter Title" name="id">
+	      <input type="button" id="btn" value="증복확인"> 
 	    
 	    </div>
 	    
@@ -86,7 +85,7 @@
 	    </div>
 	
 	  	    
-	    <input type="button" class="btn btn-default" value="JOIN" id="join">
+	    <input type="button" id="join" class="btn btn-default" value="JOIN">
  	 </form>
 </div>
 </div>

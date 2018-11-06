@@ -11,7 +11,18 @@ import com.se.util.DBConnector;
 
 public class MemoDAO {
 
-	public static void main(String[] args) {
+	public int delete(int num) throws Exception {
+		Connection con = DBConnector.getConnect();
+		String sql = "delete memo where num=?";
+		PreparedStatement st = con.prepareStatement(sql);
+		
+		st.setInt(1, num);
+		int result = st.executeUpdate();
+		DBConnector.disConnect(st, con);
+		return result;
+	}
+	/* 고치면 리스트 실행
+	 * public static void main(String[] args) {
 		MemoDAO memoDAO = new MemoDAO();
 		for(int i=0; i<40;i++) {
 			MemoDTO memoDTO = new MemoDTO();
@@ -25,7 +36,7 @@ public class MemoDAO {
 			}
 		}
 		System.out.println("finish");
-	}
+	}*/
 	
 	public int insert(MemoDTO memoDTO) throws Exception{
 		Connection con = DBConnector.getConnect();

@@ -14,7 +14,7 @@ $(function(){
 	$("#more").click(function(){
 		/*1. alert("test"); 창이뜨는지 시작하고 지우기: 아직 안나오니까..기다리기*/
 		$.get("./memoMore.do",function(data){
-			alert(data);
+			alert(data.trim());				//trim : 앞뒤 공백제거
 		});
 		
 	});
@@ -22,9 +22,11 @@ $(function(){
 	$("#write"),click(function(){
 		var writer =$("#writer").val();
 		var contents =$("#contents").val();
-		$.post("./memoWrite.do",{writer:writer,contents:contents});
-		alert(data);
-		location.reload();
+		$.post("./memoWrite.do",{writer:writer,contents:contents}, function(data) {
+			alert(data);
+			location.reload();
+			
+		});
 		
 	});
 });

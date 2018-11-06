@@ -151,6 +151,20 @@ public class NoticeDAO implements BoardDAO {
 	}
 
 	
-	
+	/* public static void main(String[] args) {
+			NoticeDAO noticeDAO = new NoticeDAO();
+			for(int i=0; i<40;i++) {
+				NoticeDTO noticeDTO = new NoticeDTO();
+				noticeDTO.setContents("m"+i);
+				noticeDTO.setWriter("w"+i);
+				try {
+					noticeDAO.insert(noticeDTO);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			System.out.println("finish");
+	 }*/
 	
 }

@@ -9,26 +9,24 @@
 <c:import url="../../../tmp/bootstrap.jsp"/>
 <script type="text/javascript">
 $(function(){
-	$("#id").click(function(){
-		opener.document.frm.id.value="${param.id}";
-		opener.document.frm.id.value="${'s'}"
+	$("#btn").click(function(){
 		/* opener.document.getElementById("id").value="${param.id}"; */		
+		opener.document.frm.id.value='${param.id}';
+		opener.document.frm.id.value='s';
 		self.close();
 	});
 });
 </script>
 </head>
 <body>
-	<h1>member Check Id</h1>
+	<h1>member Check ID</h1>
 	<div>
-		<c:if test="${result eq 1}">
-		<h3>${param.id}사용 가능한 아이디입니다.</h3>
-		<button id="btn">사용하기</button>
+		<c:if test="${result eq '1'}">
+			<h3>${param.id}사용가능한 ID 입니다.</h3>
+			<button id="btn">사용하기</button>
 		</c:if>
-		
-		<c:if test="${result eq 2}">
-		<h3>${param.id}이미 사용된 아이디입니다.</h3>
-		
+		<c:if test="${result eq '2'}">
+			<h3>${param.id}이미사용된 ID 입니다.</h3>
 		</c:if>
 	</div>
 	<div>

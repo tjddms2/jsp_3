@@ -16,8 +16,30 @@ public class MemoService {
 	public MemoService() {
 		memoDAO = new MemoDAO();
 	}
-	
-	
+	//delete
+	public ActionFoward delete(HttpServletRequest request, HttpServletResponse response) {
+		ActionFoward actionFoward = new ActionFoward();
+		String [] nums= request.getParameterValues("num");
+		
+		int num=0;
+		MemoDAO memoDAO = new MemoDAO();
+		for(String s : nums) {
+			
+			try {	//몇번 지워지는가?
+				num= Integer.parseInt(s);
+				num = memoDAO.delete(num);
+			}catch(Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				
+			}
+		}
+		
+		request.setAttribute("message", num);
+		actionFoward.setCheck(true);
+		actionFoward.setPath("../WEB-INF/view/common/resultAjax.jsp");
+		return actionFoward;
+	}
 	
 	//insert
 	public ActionFoward insert(HttpServletRequest request, HttpServletResponse response) {
@@ -63,6 +85,7 @@ public class MemoService {
 		try {
 			List<MemoDTO> ar= memoDAO.selectList(rowNumber);
 			request.setAttribute("list", ar);
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

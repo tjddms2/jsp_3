@@ -29,6 +29,7 @@
 			<form action="./${board}Update.do" method="post"
 				enctype="multipart/form-data">
 				<input type="hidden" name="num" value="${dto.num}">
+				
 				<div class="form-group">
 					<label for="title">TITLE:</label> <input type="text"
 						value="${dto.title}" class="form-control" id="title"
@@ -50,8 +51,8 @@
 
 				<c:forEach items="${files}" var="file" varStatus="i"> 
 					<div class="form-group">
-						<label for="file">File:</label> <input type="file"
-							value="${file.oName}" class="form-control" id="file" name="f${i.count}"> <!-- varStatus: 1씩증가함 -->
+					<span>${file.oname}</span>	
+					<span>X</span>
 					</div>
 				</c:forEach>
 
