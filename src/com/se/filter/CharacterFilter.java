@@ -39,12 +39,13 @@ public class CharacterFilter implements Filter {
 
 		// pass the request along the filter chain
 		//요청 발생시, 실행! (들어가기 전)
-		System.out.println("CharacterFilter In");
-		request.setCharacterEncoding("UTF-8"); 
+		System.out.println("Character Filter In");
+		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		chain.doFilter(request, response);
+		System.out.println("Character Filter Out");
 		//응답 발생시 실행	(나온 후)
-		System.out.println("CharacterFilter Out");
+		
 	}
 
 	/**

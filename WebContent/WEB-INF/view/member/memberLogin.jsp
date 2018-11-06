@@ -19,12 +19,12 @@
 	<div class="container-fluid">
 		<div class="row">
 			<h3>${message}</h3>
-
-		</div>
+	</div>
+	
 		<div class="row">
 			<form action="./memberLogin.do" method="post">
 				<div class="form-group">
-					<label for="id">Id:</label> <input type="text" class="form-control"
+					<label for="id">ID:</label> <input type="text" class="form-control"
 						id="id" placeholder="Enter id" name="id"></div>
 
 				<div class="form-group">

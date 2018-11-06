@@ -38,10 +38,13 @@ public class MemoController extends HttpServlet {
 	
 		if(command.equals("/memoList.do")) {
 			actionFoward = memoService.selectList(request, response);
+			
 		}else if(command.equals("/memoMore.do")) {
 		actionFoward = memoService.selectList(request, response);
+		
 		}else if(command.equals("/memoWrite.do")) {
 			actionFoward = memoService.insert(request, response);
+			
 		}else if(command.equals("/memoDelete.do")) {
 			actionFoward = memoService.delete(request, response);
 		}

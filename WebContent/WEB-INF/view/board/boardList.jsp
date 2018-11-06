@@ -25,7 +25,7 @@
 
 <div class="container-fluid">
 		<div class="row">
-			<h1>${board}</h1>
+				<h1>${board}</h1>
 		</div>
 		<div class="row">
 			<div>
@@ -37,11 +37,12 @@
 							<option>Contents</option>
 							<option>Writer</option>
 						</select> 
+						
 						<input type="text" class="form-control" id="search" placeholder="Enter search" name="search">
 					</div>
 
 
-					<button type="submit" class="btn btn-default">WRITER</button>
+					<button type="submit" class="btn btn-default">Submit</button>
 				</form>
 			</div>
 
@@ -50,20 +51,20 @@
 					<td>NUM</td>
 					<td>TITLE</td>
 					<td>WRITER</td>
-					<td>REG_DATE</td>
+					<td>REGDATE</td>
 					<td>HIT</td>
 				</tr>
-				
+
 				<c:forEach items="${list}" var="boardDTO">
 				<tr>
-					<td>${boardDTO.num}</td>
-					<td>
-					<td><a href="./${board}SelectOne.do?num=${boardDTO.num}"> 
+					<td>${boardDTO.num} </td>
+				<td>		
+				<a href="./${board}SelectOne.do?num=${boardDTO.num}">
 				<c:catch>
 					<c:forEach begin="1" end="${boardDTO.depth}">
 						--
 					</c:forEach>
-				</c:catch>	
+				</c:catch>
 				
 			<%-- c:catch의 예	try{
 						QnaDTO qnaDTO = (QnaDTO)boardDTO;
@@ -73,10 +74,11 @@
 						}catch(Exception e){} --%>
 					
 					
-					${boarDTO.title}</a></td>
-					<td>${boarDTO.writer}</td>
-					<td>${boarDTO.reg_date}</td>
-					<td>${boarDTO.hit}</td>
+					${boardDTO.title}</a> </td>
+				<td>${boardDTO.writer} </td>
+				<td>${boardDTO.reg_date} </td>
+				<td>${boardDTO.hit} </td>
+				
 				</tr>
 				
 				</c:forEach>
@@ -86,10 +88,11 @@
 				<div class="row">
 
 					<ul class="pagination">
-						<li><a href="./${board }List.do?curPage=1"><span class="glyphicon glyphicon-backward"></span></a></li>
+						<li><a href="./${board} List.do?curPage=1"><span class="glyphicon glyphicon-backward"></span></a></li>
 
 						<c:if test="${pager.curBlock gt 1}">
-							<li><a href="./${board}List.do?curPage=${pager.startNum-1}"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+							<li><a href="./${board}List.do?curPage=${pager.startNum-1}">
+							<span class="glyphicon glyphicon-chevron-left"></span></a></li>
 						</c:if>
 						
 						<c:forEach begin="${paper.starNum}" end="${paper.lastNum}" var="i">
@@ -97,12 +100,14 @@
 						</c:forEach>
 						
 						<c:if test="${pager.curBlock lt pager.totalBlock}"> <!-- 중괄호 안에다가 다쓰는것 -->
-						<li><a href="./${board}List.do?curPage=${pager.lastNum+1}"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+						<li><a href="./${board}List.do?curPage=${pager.lastNum+1}">
+						<span class="glyphicon glyphicon-chevron-right"></span></a></li>
 						</c:if>
 												
 
 						<li><a
-							href="./${board}List.do?curPage=${pager.totalPage}"><span class="glyphicon glyphicon-forward"></span></a></li>
+							href="./${board}List.do?curPage=${pager.totalPage}">
+							<span class="glyphicon glyphicon-forward"></span></a></li>
 					</ul>
 
 				</div>
@@ -112,17 +117,15 @@
 	
 	<c:choose>
 		<c:when test="${board eq 'notice'}">
-	<c:if test="${not empty member and member.kind eq 't'}"> <!-- 선생님아이디랑 같지 않더라면? -->
-		<c:import url="../../../temp/writebutton.jsp"/>
-		
-		</c:if>
-		
+			<c:if test="${not empty member and member.kind eq 'T'}">
+				<c:import url="../../../temp/writeButton.jsp"></c:import>
+			</c:if>
 		
 		</c:when>
 		<c:otherwise>
-		<c:if test="${not empty member}"> <!-- 선생님아이디랑 같지 않더라면? -->
-		<c:import url="../../../temp/writebutton.jsp"/>
-		</c:if>
+			<c:if test="${not empty member}">
+				<c:import url="../../../temp/writeButton.jsp"></c:import>
+			</c:if>
 		
 		</c:otherwise>
 	

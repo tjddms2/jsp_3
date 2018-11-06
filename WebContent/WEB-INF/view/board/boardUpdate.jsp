@@ -15,6 +15,26 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <c:import url="../../../temp/bootstrap.jsp"/>
+<script type="text/javascript">
+$(function() {
+	$(".del").click(function() {
+		//  /file/fileDelete.do
+		var fnum = $(this).attr("id");
+		var fname =$(this).attr("title");
+		$.post("../file/fileDelete.do",{fnum:fnum, fname:fname}, function(data) {
+			data = data.trim();
+			if(data == '1'){
+				alert("Success");
+				$("#"+fnum).parent().remove(); 		//부모나옴
+				//$("#p"+fnum).remove();
+			}else {
+				alert("Fail");
+			}
+		});
+	});
+});
+
+</script>
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
 <c:import url="../../../temp/header.jsp"/>
@@ -26,13 +46,11 @@
 		</div>
 		<div class="row">
 
-			<form action="./${board}Update.do" method="post"
-				enctype="multipart/form-data">
+			<form action="./${board}Update.do" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="num" value="${dto.num}">
 				
 				<div class="form-group">
-					<label for="title">TITLE:</label> <input type="text"
-						value="${dto.title}" class="form-control" id="title"
+					<label for="title">TITLE:</label> <input type="text" value="${dto.title}" class="form-control" id="title"
 						placeholder="Enter title" name="title">
 				</div>
 
@@ -50,9 +68,9 @@
 				</div>
 
 				<c:forEach items="${files}" var="file" varStatus="i"> 
-					<div class="form-group">
+					<div class="form-group" id="p${file.fname}">
 					<span>${file.oname}</span>	
-					<span>X</span>
+					<span class="del" id="${file.fnum}" title="${file.fname}">X</span>
 					</div>
 				</c:forEach>
 

@@ -36,7 +36,8 @@
 					<input type="text" value="${member.email}" class="form-control" id="email" placeholder="Enter Email" name="email"></div>
 
 				<div class="form-group">
-					<label for="file">file:</label> <input type="text" class="form-control" id="file" placeholder="Enter file" name="file"></div>
+					<label for="file">file:</label> 
+					<input type="text" class="form-control" id="file" name="f1"></div>
 
 
 				<button type="submit" class="btn btn-default">Writer</button>

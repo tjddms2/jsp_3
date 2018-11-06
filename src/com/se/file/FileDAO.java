@@ -10,6 +10,18 @@ import com.se.util.DBConnector;
 
 public class FileDAO {
 
+	//delete
+	public int delete(int fnum) throws Exception{
+		Connection con = DBConnector.getConnect();
+		String sql="delete upload where fnum=?";
+		PreparedStatement st= con.prepareStatement(sql);
+		st.setInt(1, fnum);
+		int result = st.executeUpdate();
+		DBConnector.disConnect(st, con);
+		return result;
+		
+	}
+	//selectList
 	public List<FilDTO> selectList(FilDTO filDTO) throws Exception{
 		List<FilDTO> ar = new ArrayList<>();
 		Connection con= DBConnector.getConnect();
@@ -32,7 +44,7 @@ public class FileDAO {
 		DBConnector.disConnect(rs, st, con);
 		return ar;
 	}
-	
+	//insert
 	public int insert(FilDTO filDTO)throws Exception{
 		Connection con =DBConnector.getConnect();
 		
@@ -48,6 +60,7 @@ public class FileDAO {
 		DBConnector.disConnect(st, con);
 		return result;
 	}
+	//deleteAll
 	public int deleteAll(int num) throws Exception{
 		Connection con =DBConnector.getConnect();
 		String sql="delete upload where num=?"; //해당글번호 삭제

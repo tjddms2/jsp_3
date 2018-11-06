@@ -26,8 +26,8 @@ public class MemoService {
 		for(String s : nums) {
 			
 			try {	//몇번 지워지는가?
-				num= Integer.parseInt(s);
-				num = memoDAO.delete(num);
+					num= Integer.parseInt(s);
+					num = memoDAO.delete(num);
 			}catch(Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

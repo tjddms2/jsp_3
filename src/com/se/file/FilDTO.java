@@ -1,29 +1,29 @@
 package com.se.file;
 
 public class FilDTO {
-	private int fNum;
-	private String fName;
-	private String oName;
+	private int fnum;
+	private String fname;
+	private String oname;
 	private int num;
 	private String kind;
 	
 	public int getfNum() {
-		return fNum;
+		return fnum;
 	}
 	public void setfNum(int fNum) {
-		this.fNum = fNum;
+		this.fnum = fNum;
 	}
 	public String getfName() {
-		return fName;
+		return fname;
 	}
 	public void setfName(String fName) {
-		this.fName = fName;
+		this.fname = fName;
 	}
 	public String getoName() {
-		return oName;
+		return oname;
 	}
 	public void setoName(String oName) {
-		this.oName = oName;
+		this.oname = oName;
 	}
 	public int getNum() {
 		return num;

@@ -19,17 +19,15 @@
 		<div class="row">
 			<c:choose>
 				<c:when test="${not empty member}">
-					<!-- 로그인 후  -->
-					<h3>${member.id} 님 환영합니다.</h3>	
-					<a href="./memberLogout.do">Logout</a>
-					<a href="./memberMyPage.do">MyPage</a>
+					<!-- 로그인 후 -->
+					<h3>${member.id} 님 환영 합니다.</h3>
+					<a href="./memberLogout.do">LogOut</a>
+					<a href="./memberMypage.do">MyPage</a>
 				</c:when>
-				
 				<c:otherwise>
 					<!-- 로그인 전 -->
 					<a href="./memberLogin.do">Login</a>
 					<a href="./memberJoin.do">Join</a>
-
 				</c:otherwise>
 			</c:choose>
 
