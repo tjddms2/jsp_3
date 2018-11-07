@@ -31,7 +31,7 @@ $(function(){
 		</c:if>
 	</div>
 	<div>
-		<form action="./memberCheckid.do">
+		<form action="./memberCheckId.do">
 			<input type="text" name="id">
 			<button>중복확인</button>
 		</form>

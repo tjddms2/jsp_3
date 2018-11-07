@@ -14,7 +14,7 @@ $(function(){	//blur: focus 나갈대 event 발생
 	$.ajax({ //여러개일 때는 항상 {}로 묶기
 		url:"../a/membercheckid.do", //여러개일 때 , 로 구분 ->AjaxController로 감
 		type:"POST", 
-		data{
+		data:{
 			id:id			
 		},
 		success:function(data){

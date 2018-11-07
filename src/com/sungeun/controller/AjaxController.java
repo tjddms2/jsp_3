@@ -41,6 +41,8 @@ public class AjaxController extends HttpServlet {
 	         actionForward = ajaxService.checkId2(request, response);
 	      }else if(command.equals("/memberInfo.do")) {
 	         actionForward = ajaxService.memberInfo(request, response);
+	      }else if(command.equals("/list.do")) {
+	    	  actionForward = ajaxService.list(request, response);
 	      }
 	      
 	      

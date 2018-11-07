@@ -21,7 +21,7 @@ public class MemoDAO {
 		DBConnector.disConnect(st, con);
 		return result;
 	}
-	//main 리스트생김
+	/*//main 리스트생김
 	  public static void main(String[] args) {
 		MemoDAO memoDAO = new MemoDAO();
 		for(int i=0; i<40;i++) {
@@ -37,7 +37,7 @@ public class MemoDAO {
 		}
 		System.out.println("finish");
 	}
-	
+	*/
 	public int insert(MemoDTO memoDTO) throws Exception{
 		Connection con = DBConnector.getConnect();
 		String sql = "insert into memo values(memo_seq.nextval, ?, ?, sysdate)";
@@ -79,4 +79,7 @@ public class MemoDAO {
 		return ar;
 		
 	}
+	
+
+	
 }
